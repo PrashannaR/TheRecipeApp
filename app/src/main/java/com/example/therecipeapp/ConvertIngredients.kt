@@ -19,7 +19,7 @@ class ConvertIngredients : AppCompatActivity() {
         setContentView(binding.root)
 
         getIngredientsList()
-        //getMeasurementItem()
+
 
     }
 
@@ -27,7 +27,7 @@ class ConvertIngredients : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         getIngredientsList()
-        //getMeasurementItem()
+
     }
 
     private fun getIngredientsList() {
@@ -38,6 +38,20 @@ class ConvertIngredients : AppCompatActivity() {
         binding.dropdownMenuIngredientType.setOnItemClickListener { adapterView, view, i, l ->
             selectedIngredient = arrayAdapter.getItem(i).toString()
             getMeasurementItem()
+
+        }
+
+    }
+
+    private fun checkConversion() {
+
+        if(from == to){
+            binding.fromInputLayout.error = "Can't be the same"
+            binding.toInputLayout.error = "Can't be the same"
+            Toast.makeText(this, "nooo", Toast.LENGTH_SHORT).show()
+        }else{
+            binding.fromInputLayout.error = null
+            binding.fromInputLayout.error = null
         }
 
     }
@@ -45,7 +59,7 @@ class ConvertIngredients : AppCompatActivity() {
     private fun getMeasurementItem() {
 
         if (selectedIngredient == "Water") {
-            
+
             val measurement = resources.getStringArray(R.array.waterMeasurement)
             val measurementAdapter =
                 ArrayAdapter(this, R.layout.measurement_dropdown_items, measurement)
@@ -62,7 +76,10 @@ class ConvertIngredients : AppCompatActivity() {
             binding.dropdownMenuTo.setOnItemClickListener { adapterView, view, i, l ->
                 to = measurementAdapter.getItem(i).toString()
 
+               checkConversion()
+
             }
+
         } else {
 
             val measurement = resources.getStringArray(R.array.measurement)
@@ -81,6 +98,7 @@ class ConvertIngredients : AppCompatActivity() {
             binding.dropdownMenuTo.setOnItemClickListener { adapterView, view, i, l ->
                 to = measurementAdapter.getItem(i).toString()
 
+              checkConversion()
             }
         }
 
