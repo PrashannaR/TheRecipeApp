@@ -2,9 +2,12 @@ package com.example.therecipeapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.therecipeapp.databinding.ActivityConvertIngredientsBinding
+import kotlin.math.ceil
+import kotlin.math.round
 
 var selectedIngredient: String? = null
 var from: String? = null
@@ -39,7 +42,32 @@ class ConvertIngredients : AppCompatActivity() {
             selectedIngredient = arrayAdapter.getItem(i).toString()
             getMeasurementItem()
 
+
         }
+
+    }
+
+    private fun convertIngredients() {
+        val amount = binding.amountInputLayout.editText?.text.toString()
+        var converted : Double? = null
+
+        if(selectedIngredient.equals("Water")) {
+            if (from.equals("tsp")) {
+
+               if(to.equals("tbsp")){
+                   converted = amount.toDouble() * 0.33
+                   binding.convertedTV.text = "$converted tbsp"
+                   binding.convertedTV.visibility = View.VISIBLE
+               }else if(to.equals("Cups")){
+                   converted = amount.toDouble() * 0.0213
+                   binding.convertedTV.text = "$converted Cups"
+                   binding.convertedTV.visibility = View.VISIBLE
+               }
+            }
+
+
+        }
+
 
     }
 
@@ -52,6 +80,8 @@ class ConvertIngredients : AppCompatActivity() {
         }else{
             binding.fromInputLayout.error = null
             binding.fromInputLayout.error = null
+
+            convertIngredients()
         }
 
     }
