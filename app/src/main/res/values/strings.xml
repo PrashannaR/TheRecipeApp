@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">The Recipe App</string>
+    <string name="convert_ingredients">Convert Ingredients</string>
+    <string name="ingredient_type">Ingredient Type</string>
+    <string name="amount">Amount</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="converted_value">Converted value:</string>
+    <string name="measurement">Measurement</string>
+
+    <string-array name="IngredientTypes">
+        <item>Water</item>
+        <item>Butter</item>
+        <item>Honey</item>
+        <item>Dry Goods</item>
+        <item>Bread Flour</item>
+        <item>Rolled Oats</item>
+        <item>Baking Powder</item>
+        <item>Baking Soda</item>
+        <item>Granulated White Sugar</item>
+    </string-array>
+
+    <string-array name="measurement">
+        <item>tsp</item>
+        <item>tbsp</item>
+        <item>Cups</item>
+        <item>Grams</item>
+    </string-array>
+
+
+
 </resources>
