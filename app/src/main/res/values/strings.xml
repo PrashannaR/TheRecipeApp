@@ -27,6 +27,14 @@
         <item>Grams</item>
     </string-array>
 
+    <string-array name="waterMeasurement">
+        <item>tsp</item>
+        <item>tbsp</item>
+        <item>Cups</item>
+        <item>Ml</item>
+    </string-array>
+
+
 
 
 </resources>

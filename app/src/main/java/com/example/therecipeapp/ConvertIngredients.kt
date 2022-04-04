@@ -6,20 +6,20 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.therecipeapp.databinding.ActivityConvertIngredientsBinding
 
-var selectedIngredient = ""
-var from = ""
-var to = ""
+var selectedIngredient: String? = null
+var from: String? = null
+var to: String? = null
 
 class ConvertIngredients : AppCompatActivity() {
     private lateinit var binding: ActivityConvertIngredientsBinding
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityConvertIngredientsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         getIngredientsList()
-        getMeasurementItem()
+        //getMeasurementItem()
 
     }
 
@@ -27,7 +27,7 @@ class ConvertIngredients : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         getIngredientsList()
-        getMeasurementItem()
+        //getMeasurementItem()
     }
 
     private fun getIngredientsList() {
@@ -37,31 +37,55 @@ class ConvertIngredients : AppCompatActivity() {
 
         binding.dropdownMenuIngredientType.setOnItemClickListener { adapterView, view, i, l ->
             selectedIngredient = arrayAdapter.getItem(i).toString()
+            getMeasurementItem()
         }
 
     }
 
     private fun getMeasurementItem() {
-        val measurement = resources.getStringArray(R.array.measurement)
-        val measurementAdapter = ArrayAdapter(this, R.layout.measurement_dropdown_items, measurement)
-        binding.dropdownMenuFrom.setAdapter(measurementAdapter)
-        binding.dropdownMenuTo.setAdapter(measurementAdapter)
 
-        //from
-        binding.dropdownMenuFrom.setOnItemClickListener { adapterView, view, i, l ->
-            from = measurementAdapter.getItem(i).toString()
-            Toast.makeText(this, "from: $from", Toast.LENGTH_SHORT).show()
+        if (selectedIngredient == "Water") {
+            
+            val measurement = resources.getStringArray(R.array.waterMeasurement)
+            val measurementAdapter =
+                ArrayAdapter(this, R.layout.measurement_dropdown_items, measurement)
+            binding.dropdownMenuFrom.setAdapter(measurementAdapter)
+            binding.dropdownMenuTo.setAdapter(measurementAdapter)
+
+            //from
+            binding.dropdownMenuFrom.setOnItemClickListener { adapterView, view, i, l ->
+                from = measurementAdapter.getItem(i).toString()
+
+            }
+
+            //to
+            binding.dropdownMenuTo.setOnItemClickListener { adapterView, view, i, l ->
+                to = measurementAdapter.getItem(i).toString()
+
+            }
+        } else {
+
+            val measurement = resources.getStringArray(R.array.measurement)
+            val measurementAdapter =
+                ArrayAdapter(this, R.layout.measurement_dropdown_items, measurement)
+            binding.dropdownMenuFrom.setAdapter(measurementAdapter)
+            binding.dropdownMenuTo.setAdapter(measurementAdapter)
+
+            //from
+            binding.dropdownMenuFrom.setOnItemClickListener { adapterView, view, i, l ->
+                from = measurementAdapter.getItem(i).toString()
+
+            }
+
+            //to
+            binding.dropdownMenuTo.setOnItemClickListener { adapterView, view, i, l ->
+                to = measurementAdapter.getItem(i).toString()
+
+            }
         }
-
-        //to
-        binding.dropdownMenuTo.setOnItemClickListener { adapterView, view, i, l ->
-            to = measurementAdapter.getItem(i).toString()
-            Toast.makeText(this, "to: $to", Toast.LENGTH_SHORT).show()
-        }
-
-
-
 
     }
+
+
 
 }
