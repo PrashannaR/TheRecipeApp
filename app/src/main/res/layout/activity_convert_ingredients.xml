@@ -61,6 +61,8 @@
                 android:id="@+id/amountEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionDone"
                 android:hint="@string/amount" />
         </com.google.android.material.textfield.TextInputLayout>
 

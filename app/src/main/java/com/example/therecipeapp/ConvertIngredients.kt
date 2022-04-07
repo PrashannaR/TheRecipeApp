@@ -1,5 +1,6 @@
 package com.example.therecipeapp
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -47,28 +48,127 @@ class ConvertIngredients : AppCompatActivity() {
 
     }
 
+    
     private fun convertIngredients() {
+//        val amount = binding.amountInputLayout.editText?.text.toString()
+//        var converted : Double? = null
+
+        water()
+
+
+    }
+
+    private fun water() {
         val amount = binding.amountInputLayout.editText?.text.toString()
         var converted : Double? = null
-
         if(selectedIngredient.equals("Water")) {
+            //teaspoon
             if (from.equals("tsp")) {
 
-               if(to.equals("tbsp")){
-                   converted = amount.toDouble() * 0.33
-                   binding.convertedTV.text = "$converted tbsp"
-                   binding.convertedTV.visibility = View.VISIBLE
-               }else if(to.equals("Cups")){
-                   converted = amount.toDouble() * 0.0213
-                   binding.convertedTV.text = "$converted Cups"
-                   binding.convertedTV.visibility = View.VISIBLE
-               }
+                when {
+                    to.equals("tbsp") -> {
+                        converted = amount.toDouble() * 0.33
+                        binding.convertedTV.text = "$converted tbsp"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    to.equals("Cups") -> {
+                        converted = amount.toDouble() * 0.0213
+                        binding.convertedTV.text = "$converted Cups"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    to.equals("Ml") -> {
+                        converted = amount.toDouble() * 4.93
+                        binding.convertedTV.text = "$converted Ml"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    else -> {
+                        binding.convertedTV.visibility = View.INVISIBLE
+                        Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+
+            //tablespoon
+            if (from.equals("tbsp")) {
+
+                when {
+                    to.equals("tsp") -> {
+                        converted = amount.toDouble() * 3
+                        binding.convertedTV.text = "$converted tsp"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    to.equals("Cups") -> {
+                        converted = amount.toDouble() * 0.0616
+                        binding.convertedTV.text = "$converted Cups"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    to.equals("Ml") -> {
+                        converted = amount.toDouble() * 14.79
+                        binding.convertedTV.text = "$converted Ml"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    else -> {
+                        binding.convertedTV.visibility = View.INVISIBLE
+                        Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            //cups
+            if (from.equals("Cups")) {
+
+                when {
+                    to.equals("tsp") -> {
+                        converted = amount.toDouble() * 48.69
+                        binding.convertedTV.text = "$converted tsp"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    to.equals("tbsp") -> {
+                        converted = amount.toDouble() * 16.23
+                        binding.convertedTV.text = "$converted tbsp"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    to.equals("Ml") -> {
+                        converted = amount.toDouble() * 240
+                        binding.convertedTV.text = "$converted Ml"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    else -> {
+                        binding.convertedTV.visibility = View.INVISIBLE
+                        Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            //ml
+            if (from.equals("Ml")) {
+
+                when {
+                    to.equals("tsp") -> {
+                        converted = amount.toDouble() * 0.203
+                        binding.convertedTV.text = "$converted tsp"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    to.equals("tbsp") -> {
+                        converted = amount.toDouble() * 0.068
+                        binding.convertedTV.text = "$converted Cups"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    to.equals("Cups") -> {
+                        converted = amount.toDouble() * 0.0042
+                        binding.convertedTV.text = "$converted Ml"
+                        binding.convertedTV.visibility = View.VISIBLE
+                    }
+                    else -> {
+                        binding.convertedTV.visibility = View.INVISIBLE
+                        Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
 
 
         }
-
-
     }
 
     private fun checkConversion() {
@@ -76,7 +176,8 @@ class ConvertIngredients : AppCompatActivity() {
         if(from == to){
             binding.fromInputLayout.error = "Can't be the same"
             binding.toInputLayout.error = "Can't be the same"
-            Toast.makeText(this, "nooo", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+            binding.convertedTV.visibility = View.INVISIBLE
         }else{
             binding.fromInputLayout.error = null
             binding.fromInputLayout.error = null
