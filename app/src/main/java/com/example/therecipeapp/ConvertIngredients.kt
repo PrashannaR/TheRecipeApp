@@ -23,15 +23,12 @@ class ConvertIngredients : AppCompatActivity() {
         setContentView(binding.root)
 
         getIngredientsList()
-
-
     }
 
 
     override fun onResume() {
         super.onResume()
         getIngredientsList()
-
     }
 
     private fun getIngredientsList() {
@@ -43,22 +40,86 @@ class ConvertIngredients : AppCompatActivity() {
             selectedIngredient = arrayAdapter.getItem(i).toString()
             getMeasurementItem()
 
-
         }
-
     }
 
 
     private fun convertIngredients() {
-//        val amount = binding.amountInputLayout.editText?.text.toString()
-//        var converted : Double? = null
-
         water()
         butter()
         honey()
 
 
     }
+
+
+
+    private fun getMeasurementItem() {
+
+        if (selectedIngredient == "Water") {
+
+            val measurement = resources.getStringArray(R.array.waterMeasurement)
+            val measurementAdapter =
+                ArrayAdapter(this, R.layout.measurement_dropdown_items, measurement)
+            binding.dropdownMenuFrom.setAdapter(measurementAdapter)
+            binding.dropdownMenuTo.setAdapter(measurementAdapter)
+
+            //from
+            binding.dropdownMenuFrom.setOnItemClickListener { adapterView, view, i, l ->
+                from = measurementAdapter.getItem(i).toString()
+
+            }
+
+            //to
+            binding.dropdownMenuTo.setOnItemClickListener { adapterView, view, i, l ->
+                to = measurementAdapter.getItem(i).toString()
+
+               checkConversion()
+
+            }
+
+        } else {
+
+            val measurement = resources.getStringArray(R.array.measurement)
+            val measurementAdapter =
+                ArrayAdapter(this, R.layout.measurement_dropdown_items, measurement)
+            binding.dropdownMenuFrom.setAdapter(measurementAdapter)
+            binding.dropdownMenuTo.setAdapter(measurementAdapter)
+
+            //from
+            binding.dropdownMenuFrom.setOnItemClickListener { adapterView, view, i, l ->
+                from = measurementAdapter.getItem(i).toString()
+
+            }
+
+            //to
+            binding.dropdownMenuTo.setOnItemClickListener { adapterView, view, i, l ->
+                to = measurementAdapter.getItem(i).toString()
+
+              checkConversion()
+            }
+        }
+
+    }
+
+
+    private fun checkConversion() {
+
+        if(from == to){
+            binding.fromInputLayout.error = "Can't be the same"
+            binding.toInputLayout.error = "Can't be the same"
+            Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+            binding.convertedTV.visibility = View.INVISIBLE
+        }else{
+            binding.fromInputLayout.error = null
+            binding.fromInputLayout.error = null
+
+            convertIngredients()
+        }
+
+    }
+
+//conversion calculation
 
     private fun honey() {
         val amount = binding.amountInputLayout.editText?.text.toString()
@@ -397,70 +458,6 @@ class ConvertIngredients : AppCompatActivity() {
 
 
         }
-    }
-
-    private fun checkConversion() {
-
-        if(from == to){
-            binding.fromInputLayout.error = "Can't be the same"
-            binding.toInputLayout.error = "Can't be the same"
-            Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
-            binding.convertedTV.visibility = View.INVISIBLE
-        }else{
-            binding.fromInputLayout.error = null
-            binding.fromInputLayout.error = null
-
-            convertIngredients()
-        }
-
-    }
-
-    private fun getMeasurementItem() {
-
-        if (selectedIngredient == "Water") {
-
-            val measurement = resources.getStringArray(R.array.waterMeasurement)
-            val measurementAdapter =
-                ArrayAdapter(this, R.layout.measurement_dropdown_items, measurement)
-            binding.dropdownMenuFrom.setAdapter(measurementAdapter)
-            binding.dropdownMenuTo.setAdapter(measurementAdapter)
-
-            //from
-            binding.dropdownMenuFrom.setOnItemClickListener { adapterView, view, i, l ->
-                from = measurementAdapter.getItem(i).toString()
-
-            }
-
-            //to
-            binding.dropdownMenuTo.setOnItemClickListener { adapterView, view, i, l ->
-                to = measurementAdapter.getItem(i).toString()
-
-               checkConversion()
-
-            }
-
-        } else {
-
-            val measurement = resources.getStringArray(R.array.measurement)
-            val measurementAdapter =
-                ArrayAdapter(this, R.layout.measurement_dropdown_items, measurement)
-            binding.dropdownMenuFrom.setAdapter(measurementAdapter)
-            binding.dropdownMenuTo.setAdapter(measurementAdapter)
-
-            //from
-            binding.dropdownMenuFrom.setOnItemClickListener { adapterView, view, i, l ->
-                from = measurementAdapter.getItem(i).toString()
-
-            }
-
-            //to
-            binding.dropdownMenuTo.setOnItemClickListener { adapterView, view, i, l ->
-                to = measurementAdapter.getItem(i).toString()
-
-              checkConversion()
-            }
-        }
-
     }
 
 
