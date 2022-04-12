@@ -49,6 +49,7 @@ class ConvertIngredients : AppCompatActivity() {
         butter()
         honey()
         dryGoods()
+        breadFlour()
 
 
     }
@@ -121,6 +122,121 @@ class ConvertIngredients : AppCompatActivity() {
     }
 
 //conversion calculation
+    private fun breadFlour() {
+
+    val amount = binding.amountInputLayout.editText?.text.toString()
+    var converted: Double? = null
+
+    if(selectedIngredient.equals("Bread Flour")) {
+        //teaspoon
+        if (from.equals("tsp")) {
+
+            when {
+                to.equals("tbsp") -> {
+                    converted = amount.toDouble() * 0.33
+                    binding.convertedTV.text = "$converted tbsp"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                to.equals("Cups") -> {
+                    converted = amount.toDouble() * 0.021
+                    binding.convertedTV.text = "$converted Cups"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                to.equals("Grams") -> {
+                    converted = amount.toDouble() * 2.65
+                    binding.convertedTV.text = "$converted Grams"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                else -> {
+                    binding.convertedTV.visibility = View.INVISIBLE
+                    Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+
+        //tablespoon
+        if (from.equals("tbsp")) {
+
+            when {
+                to.equals("tsp") -> {
+                    converted = amount.toDouble() * 3
+                    binding.convertedTV.text = "$converted tsp"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                to.equals("Cups") -> {
+                    converted = amount.toDouble() * 0.062
+                    binding.convertedTV.text = "$converted Cups"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                to.equals("Grams") -> {
+                    converted = amount.toDouble() * 7.94
+                    binding.convertedTV.text = "$converted Grams"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                else -> {
+                    binding.convertedTV.visibility = View.INVISIBLE
+                    Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        //cups
+        if (from.equals("Cups")) {
+
+            when {
+                to.equals("tsp") -> {
+                    converted = amount.toDouble() * 48
+                    binding.convertedTV.text = "$converted tsp"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                to.equals("tbsp") -> {
+                    converted = amount.toDouble() * 16
+                    binding.convertedTV.text = "$converted tbsp"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                to.equals("Grams") -> {
+                    converted = amount.toDouble() * 136
+                    binding.convertedTV.text = "$converted Grams"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                else -> {
+                    binding.convertedTV.visibility = View.INVISIBLE
+                    Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        //grams
+        if (from.equals("Grams")) {
+
+            when {
+                to.equals("tsp") -> {
+                    converted = amount.toDouble() * 0.38
+                    binding.convertedTV.text = "$converted tsp"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                to.equals("tbsp") -> {
+                    converted = amount.toDouble() * 0.13
+                    binding.convertedTV.text = "$converted tbsp"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                to.equals("Cups") -> {
+                    converted = amount.toDouble() * 0.01
+                    binding.convertedTV.text = "$converted Cups"
+                    binding.convertedTV.visibility = View.VISIBLE
+                }
+                else -> {
+                    binding.convertedTV.visibility = View.INVISIBLE
+                    Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+
+    }
+    }
+
 
     private fun dryGoods() {
         val amount = binding.amountInputLayout.editText?.text.toString()
