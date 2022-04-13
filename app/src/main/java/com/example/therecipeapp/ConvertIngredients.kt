@@ -3,12 +3,15 @@ package com.example.therecipeapp
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.isEmpty
 import com.example.therecipeapp.databinding.ActivityConvertIngredientsBinding
 import kotlin.math.ceil
 import kotlin.math.round
+import kotlin.math.roundToInt
 
 var selectedIngredient: String? = null
 var from: String? = null
@@ -54,8 +57,6 @@ class ConvertIngredients : AppCompatActivity() {
         bakingPowder()
         bakingSoda()
         granulatedSugar()
-
-
     }
 
 
@@ -124,6 +125,17 @@ class ConvertIngredients : AppCompatActivity() {
             convertIngredients()
         }
 
+
+        binding.amountInputLayout.setOnClickListener{
+            binding.amountInputLayout.setOnKeyListener(View.OnKeyListener{v, keyCode, event ->
+                if(keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP){
+                    convertIngredients()
+                    return@OnKeyListener true
+                }
+                false
+            })
+        }
+
     }
 
 //conversion calculation
@@ -132,6 +144,7 @@ class ConvertIngredients : AppCompatActivity() {
         val amount = binding.amountInputLayout.editText?.text.toString()
         var converted: Double? = null
 
+
         if(selectedIngredient.equals("Granulated White Sugar")) {
             //teaspoon
             if (from.equals("tsp")) {
@@ -139,17 +152,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.33
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.021
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 4.16
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -166,17 +182,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 3
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.062
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 12.5
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -192,17 +211,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 48
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 16
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 200
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -218,17 +240,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 0.24
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.08
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.005
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -253,17 +278,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.33
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.021
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 4.60
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -280,17 +308,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 3
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.062
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 14
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -306,17 +337,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 48
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 16
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 220
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -332,17 +366,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 0.22
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.072
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.0042
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -368,17 +405,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.33
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.021
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 5
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -395,17 +435,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 3
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.062
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 14
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -421,17 +464,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 48
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 16
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 230
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -447,17 +493,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 0.14
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.05
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.0042
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -484,17 +533,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.33
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.021
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 1.88
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -511,17 +563,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 3
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.062
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 5.63
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -537,17 +592,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 48
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 16
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 90
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -563,17 +621,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 0.53
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.18
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.01
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -599,17 +660,20 @@ class ConvertIngredients : AppCompatActivity() {
             when {
                 to.equals("tbsp") -> {
                     converted = amount.toDouble() * 0.33
-                    binding.convertedTV.text = "$converted tbsp"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round tbsp"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 to.equals("Cups") -> {
                     converted = amount.toDouble() * 0.021
-                    binding.convertedTV.text = "$converted Cups"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round Cups"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 to.equals("Grams") -> {
                     converted = amount.toDouble() * 2.65
-                    binding.convertedTV.text = "$converted Grams"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round Grams"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 else -> {
@@ -626,17 +690,20 @@ class ConvertIngredients : AppCompatActivity() {
             when {
                 to.equals("tsp") -> {
                     converted = amount.toDouble() * 3
-                    binding.convertedTV.text = "$converted tsp"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round tsp"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 to.equals("Cups") -> {
                     converted = amount.toDouble() * 0.062
-                    binding.convertedTV.text = "$converted Cups"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round Cups"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 to.equals("Grams") -> {
                     converted = amount.toDouble() * 7.94
-                    binding.convertedTV.text = "$converted Grams"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round Grams"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 else -> {
@@ -652,17 +719,20 @@ class ConvertIngredients : AppCompatActivity() {
             when {
                 to.equals("tsp") -> {
                     converted = amount.toDouble() * 48
-                    binding.convertedTV.text = "$converted tsp"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round tsp"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 to.equals("tbsp") -> {
                     converted = amount.toDouble() * 16
-                    binding.convertedTV.text = "$converted tbsp"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round tbsp"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 to.equals("Grams") -> {
                     converted = amount.toDouble() * 136
-                    binding.convertedTV.text = "$converted Grams"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round Grams"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 else -> {
@@ -678,17 +748,20 @@ class ConvertIngredients : AppCompatActivity() {
             when {
                 to.equals("tsp") -> {
                     converted = amount.toDouble() * 0.38
-                    binding.convertedTV.text = "$converted tsp"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round tsp"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 to.equals("tbsp") -> {
                     converted = amount.toDouble() * 0.13
-                    binding.convertedTV.text = "$converted tbsp"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round tbsp"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 to.equals("Cups") -> {
                     converted = amount.toDouble() * 0.01
-                    binding.convertedTV.text = "$converted Cups"
+                    val round = (converted * 100.0).roundToInt() / 100.0
+                    binding.convertedTV.text = "$round Cups"
                     binding.convertedTV.visibility = View.VISIBLE
                 }
                 else -> {
@@ -714,17 +787,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.33
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.021
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 2.6
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -741,17 +817,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 3
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.062
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 8
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -767,17 +846,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 48
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 16
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 128
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -793,17 +875,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 0.14
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.05
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.0078
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -827,17 +912,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.33
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.021
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 7.08
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -854,17 +942,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 3
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.062
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 21.25
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -880,17 +971,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 48
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 16
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 340
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -906,17 +1000,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 0.14
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.05
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.0042
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -940,17 +1037,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.33
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.021
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 4.73
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -967,17 +1067,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 3
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.0616
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 14.18
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -993,17 +1096,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 48
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 16
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Grams") -> {
                         converted = amount.toDouble() * 227
-                        binding.convertedTV.text = "$converted Grams"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Grams"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -1019,17 +1125,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 0.21
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.07
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.0042
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -1053,17 +1162,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.33
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.0213
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Ml") -> {
                         converted = amount.toDouble() * 4.93
-                        binding.convertedTV.text = "$converted Ml"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Ml"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -1080,17 +1192,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 3
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.0616
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Ml") -> {
                         converted = amount.toDouble() * 14.79
-                        binding.convertedTV.text = "$converted Ml"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Ml"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -1106,17 +1221,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 48.69
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 16.23
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Ml") -> {
                         converted = amount.toDouble() * 240
-                        binding.convertedTV.text = "$converted Ml"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Ml"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
@@ -1132,17 +1250,20 @@ class ConvertIngredients : AppCompatActivity() {
                 when {
                     to.equals("tsp") -> {
                         converted = amount.toDouble() * 0.203
-                        binding.convertedTV.text = "$converted tsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("tbsp") -> {
                         converted = amount.toDouble() * 0.068
-                        binding.convertedTV.text = "$converted tbsp"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round tbsp"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     to.equals("Cups") -> {
                         converted = amount.toDouble() * 0.0042
-                        binding.convertedTV.text = "$converted Cups"
+                        val round = (converted * 100.0).roundToInt() / 100.0
+                        binding.convertedTV.text = "$round Cups"
                         binding.convertedTV.visibility = View.VISIBLE
                     }
                     else -> {
