@@ -165,7 +165,7 @@ class ConvertIngredients : AppCompatActivity() {
                             binding.convertedTV.visibility = View.VISIBLE
                         }
                         to.equals("Grams") -> {
-                            converted = amount.toDouble() * 2.83
+                            converted = amount.toDouble() * 3.14
                             val round = (converted * 100.0).roundToInt() / 100.0
                             binding.convertedTV.text = "$round Grams"
                             binding.convertedTV.visibility = View.VISIBLE
@@ -195,7 +195,7 @@ class ConvertIngredients : AppCompatActivity() {
                             binding.convertedTV.visibility = View.VISIBLE
                         }
                         to.equals("Grams") -> {
-                            converted = amount.toDouble() * 8.5
+                            converted = amount.toDouble() * 9.44
                             val round = (converted * 100.0).roundToInt() / 100.0
                             binding.convertedTV.text = "$round Grams"
                             binding.convertedTV.visibility = View.VISIBLE
@@ -224,7 +224,7 @@ class ConvertIngredients : AppCompatActivity() {
                             binding.convertedTV.visibility = View.VISIBLE
                         }
                         to.equals("Grams") -> {
-                            converted = amount.toDouble() * 2396.52
+                            converted = amount.toDouble() * 2662.8
                             val round = (converted * 100.0).roundToInt() / 100.0
                             binding.convertedTV.text = "$round Grams"
                             binding.convertedTV.visibility = View.VISIBLE
