@@ -51,6 +51,7 @@ class ConvertIngredients : AppCompatActivity() {
         water()
         butter()
         honey()
+        yeast()
         dryGoods()
         breadFlour()
         rolledOats()
@@ -139,6 +140,136 @@ class ConvertIngredients : AppCompatActivity() {
     }
 
 //conversion calculation
+
+    private fun yeast(){
+
+            val amount = binding.amountInputLayout.editText?.text.toString()
+            var converted: Double? = null
+
+
+            if(selectedIngredient.equals("Yeast")) {
+                //teaspoon
+                if (from.equals("tsp")) {
+
+                    when {
+                        to.equals("tbsp") -> {
+                            converted = amount.toDouble() * 0.33
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round tbsp"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        to.equals("Cups") -> {
+                            converted = amount.toDouble() * 0.021
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round Cups"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        to.equals("Grams") -> {
+                            converted = amount.toDouble() * 2.83
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round Grams"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        else -> {
+                            binding.convertedTV.visibility = View.INVISIBLE
+                            Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+
+                //tablespoon
+                if (from.equals("tbsp")) {
+
+                    when {
+                        to.equals("tsp") -> {
+                            converted = amount.toDouble() * 3
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round tsp"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        to.equals("Cups") -> {
+                            converted = amount.toDouble() * 0.062
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round Cups"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        to.equals("Grams") -> {
+                            converted = amount.toDouble() * 8.5
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round Grams"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        else -> {
+                            binding.convertedTV.visibility = View.INVISIBLE
+                            Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+                //cups
+                if (from.equals("Cups")) {
+
+                    when {
+                        to.equals("tsp") -> {
+                            converted = amount.toDouble() * 845
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round tsp"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        to.equals("tbsp") -> {
+                            converted = amount.toDouble() * 285
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round tbsp"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        to.equals("Grams") -> {
+                            converted = amount.toDouble() * 2396.52
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round Grams"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        else -> {
+                            binding.convertedTV.visibility = View.INVISIBLE
+                            Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+                //grams
+                if (from.equals("Grams")) {
+
+                    when {
+                        to.equals("tsp") -> {
+                            converted = amount.toDouble() * 0.375
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round tsp"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        to.equals("tbsp") -> {
+                            converted = amount.toDouble() * 0.125
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round tbsp"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        to.equals("Cups") -> {
+                            converted = amount.toDouble() * 0.005
+                            val round = (converted * 100.0).roundToInt() / 100.0
+                            binding.convertedTV.text = "$round Cups"
+                            binding.convertedTV.visibility = View.VISIBLE
+                        }
+                        else -> {
+                            binding.convertedTV.visibility = View.INVISIBLE
+                            Toast.makeText(this, "Invalid Conversion", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+
+            }
+
+    }
+
 
     private fun granulatedSugar(){
         val amount = binding.amountInputLayout.editText?.text.toString()
