@@ -7,6 +7,7 @@
     <string name="to">To</string>
     <string name="converted_value">Converted value:</string>
     <string name="measurement">Measurement</string>
+    <string name="convert">Convert</string>
 
     <string-array name="IngredientTypes">
         <item>Water</item>

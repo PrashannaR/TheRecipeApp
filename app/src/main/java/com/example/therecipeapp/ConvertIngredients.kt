@@ -122,7 +122,7 @@ class ConvertIngredients : AppCompatActivity() {
             binding.fromInputLayout.error = null
             binding.fromInputLayout.error = null
 
-            convertIngredients()
+            binding.btnConvert.setOnClickListener { convertIngredients() }
         }
 
 
